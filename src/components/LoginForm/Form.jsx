@@ -1,4 +1,4 @@
-import {  useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import classes from './Form.module.css'
 import { useReducer } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -109,15 +109,30 @@ function Form(props) {
 	}
 	const submitHandler = (e) => {
 		e.preventDefault()
-		props.onLogin(
-			initialState.text,
-			initialState.email,
-			initialState.password,
-		)
+		const login = {
+			text: loginState.text.text,
+			email: loginState.email.email,
+			password: loginState.password.password,
+		}
+		console.log(login);
+		async function onLogin() {
+			const response = await fetch(
+				'https://login-form-992a6-default-rtdb.firebaseio.com/login.json',
+				{
+					method: 'POST',
+					body: JSON.stringify(login),
+					headers: {
+						'Content-type': 'application/json',
+					},
+				},
+			)
+			const data = await response.json()
+		}
+		onLogin()
+		navigate('/FormPage')
 	}
 	return (
 		<form onSubmit={submitHandler}>
-			{console.log(loginState)}
 			<div className={classes.container}>
 				<div className={classes.screen}>
 					<div className={classes.screen__content}>
@@ -231,9 +246,7 @@ function Form(props) {
 								</div>
 							</div>
 							<button
-								onClick={() => {
-									navigate('/FormPage')
-								}}
+							    onClick={submitHandler}
 								className={`${classes.button}  ${classes.login__submit}`}
 								type='submit'
 								disabled={!formIsValid}

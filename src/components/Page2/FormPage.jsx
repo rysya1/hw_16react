@@ -1,5 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import './FormPage.css'
+// import Login from './Login'
+// import LoginList from './LoginList'
 const FormPage = (props) => {
 	const navigate = useNavigate()
 	return (
@@ -21,9 +23,13 @@ const FormPage = (props) => {
 			<div className='hello'>
 				<h1>Hello there</h1>
 			</div>
+			<section>
+				<button>Fetch Login</button>
+				{/* <LoginList /> */}
+			</section>
+			
 			<div className='robot'>
 				<img
-					
 					src='https://inbound.occamagenciadigital.com/hubfs/occami_hoverboad_gif.gif'
 					alt=''
 				/>

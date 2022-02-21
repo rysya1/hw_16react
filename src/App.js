@@ -6,10 +6,11 @@ import FormPage from './components/Page2/FormPage'
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
 
 function App() {
+	const [logins, setLogin] = useState()
 	return (
 		<BrowserRouter>
 			<Routes>
-				<Route path='/' element={<Form />} />
+				<Route path='/' element={<Form/>} />
 				<Route path='/FormPage' element={<FormPage />} />
 			</Routes>
 		</BrowserRouter>
